@@ -176,10 +176,10 @@ public class ServiceOfCourse implements ICourseService {
         courseDTO.setInstructorPhone(course.getAccount().getPhone());
         courseDTO.setInstructorTwitter(course.getAccount().getTwitter());
         courseDTO.setCategories(course.getCategoryCourse().stream().map(categoryCourse -> serviceOfCategory.fromCategoryToCategotyResponeNameDTO(categoryCourse)).toList());
-        courseDTO.setLearningObjective(serviceOfLearningObjective.getLearningObjectiveByCourseId(course.getId()));
+        courseDTO.setLearningObjective(serviceOfLearningObjective.fromLearningObjectiveToResponeLearningObjectiveDTO(course.getLearningObjective() != null ? course.getLearningObjective() : null));
         courseDTO.setSections(course.getSections().stream().map(section -> sectionService.fromSectionIntoResponeSectionDTO(section,course.getId())).toList());
         courseDTO.setCount(courseRateRepository.countCourseRateByCourseId(course.getId()));
-        courseDTO.setImages(serviceOfImage.getImageByCourseID(course.getId()));
+        courseDTO.setImages(serviceOfImage.fromImagetoResponeImageDTO(course.getImages() != null ? course.getImages() : null));
         courseDTO.setAvg(courseRateRepository.avgCourseRateByCourseId(course.getId()));
         return courseDTO;
     }

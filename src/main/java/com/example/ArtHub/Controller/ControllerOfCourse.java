@@ -77,13 +77,11 @@ public class ControllerOfCourse implements ICourseController {
         List<Section> sections = dto.getSections();
         List<Section> sectionList = new ArrayList<>();
         for (Section createSectionDTO: sections) {
-            sectionList.add(sectionService.createSection(createSectionDTO,dto.getAccountId(),course.getId()));
+            sectionList.add(sectionService.createSection(createSectionDTO,dto.getAccountId(),course));
         }
         course.setSections(sectionList);
 
-
-
-        serviceOfLearningObjective.createLearningObjective(dto.getLearningObjective(), course.getId());
+        course.setLearningObjective(serviceOfLearningObjective.createLearningObjective(dto.getLearningObjective(), course));
 
 
         List<CategoryCourse> categoryCourses = new ArrayList<>();

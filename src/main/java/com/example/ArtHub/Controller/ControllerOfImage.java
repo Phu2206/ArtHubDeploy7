@@ -2,8 +2,10 @@ package com.example.ArtHub.Controller;
 
 import com.example.ArtHub.Entity.Image;
 import com.example.ArtHub.InterfaceOfControllers.IImageController;
+import com.example.ArtHub.Repository.CourseRepository;
 import com.example.ArtHub.Repository.ImageRepository;
 import com.example.ArtHub.ResponeObject.ResponeObject;
+import com.example.ArtHub.Service.ServiceOfCourse;
 import com.example.ArtHub.Service.ServiceOfFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +33,9 @@ public class ControllerOfImage implements IImageController {
 
     @Autowired
     ImageRepository imageRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
 
     @Autowired
     ServiceOfFile serviceOfFile;
@@ -70,11 +75,11 @@ public class ControllerOfImage implements IImageController {
         image.setTwo(imageNames.get(1));
         image.setThree(imageNames.get(2));
         image.setFour(imageNames.get(3));
-        image.setCourseId(courseId);
+        image.setCourse(courseRepository.findById(courseId).orElseThrow());
 
         if (imageRepository.existsByCourseId(courseId)) {
             return ResponseEntity.status(HttpStatus.OK).body(
-                    new ResponeObject("ok", "Images updated successfully!!", imageRepository.updateImages(image.getOne(), image.getTwo(), image.getThree(), image.getFour(), image.getCourseId()))
+                    new ResponeObject("ok", "Images updated successfully!!", imageRepository.updateImages(image.getOne(), image.getTwo(), image.getThree(), image.getFour(), image.getCourse().getId()))
             );
         } else {
             return ResponseEntity.status(HttpStatus.OK).body(

@@ -61,8 +61,27 @@ public class Course {
     @JoinColumn(name = "accountId", nullable = false)
     private Account account;
 
+    @OneToOne(mappedBy = "course")
+    private LearningObjective learningObjective;
 
+    @OneToOne(mappedBy = "course")
+    private Image images;
 
+    public Image getImages() {
+        return images;
+    }
+
+    public void setImages(Image images) {
+        this.images = images;
+    }
+
+    public LearningObjective getLearningObjective() {
+        return learningObjective;
+    }
+
+    public void setLearningObjective(LearningObjective learningObjective) {
+        this.learningObjective = learningObjective;
+    }
 
     @OneToMany(mappedBy = "course")
     private List<CategoryCourse> categoryCourse;

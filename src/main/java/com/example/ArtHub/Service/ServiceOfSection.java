@@ -2,6 +2,7 @@ package com.example.ArtHub.Service;
 
 import com.example.ArtHub.AppServiceExeption;
 import com.example.ArtHub.DTO.ResponeSectionDTO;
+import com.example.ArtHub.Entity.Course;
 import com.example.ArtHub.Entity.Section;
 import com.example.ArtHub.Repository.CourseRepository;
 import com.example.ArtHub.Repository.SectionRepository;
@@ -40,11 +41,11 @@ public class ServiceOfSection implements ISectionService {
 
 
     @Override
-    public Section createSection(Section dto,int id,int courseId) throws AppServiceExeption {
+    public Section createSection(Section dto, int id, Course course) throws AppServiceExeption {
         Section section = new Section();
         section.setName(dto.getName());
         section.setAccountId(id);
-        section.setCourse(courseRepository.findById(courseId).orElseThrow());
+        section.setCourse(course);
         return sectionRepository.save(section);
     }
 

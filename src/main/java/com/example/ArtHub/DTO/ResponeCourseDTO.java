@@ -67,7 +67,7 @@ public class ResponeCourseDTO {
     private List<ResponeSectionDTO> sections;
 
 
-    private LearningObjective learningObjective;
+    private ResponeLearningObjectiveDTO learningObjective;
 
     private List<ResponeCategoryNameDTO> categories;
 
@@ -87,7 +87,7 @@ public class ResponeCourseDTO {
 
     private String instructorFacebook;
 
-    private Image images;
+    private ResponeImageDTO images;
 
     private int count;
     private Float avg;
@@ -108,11 +108,12 @@ public class ResponeCourseDTO {
         this.avg = avg;
     }
 
-    public Image getImages() {
+
+    public ResponeImageDTO getImages() {
         return images;
     }
 
-    public void setImages(Image images) {
+    public void setImages(ResponeImageDTO images) {
         this.images = images;
     }
 
@@ -322,11 +323,12 @@ public class ResponeCourseDTO {
         this.sections = sections;
     }
 
-    public LearningObjective getLearningObjective() {
+
+    public ResponeLearningObjectiveDTO getLearningObjective() {
         return learningObjective;
     }
 
-    public void setLearningObjective(LearningObjective learningObjective) {
+    public void setLearningObjective(ResponeLearningObjectiveDTO learningObjective) {
         this.learningObjective = learningObjective;
     }
 }
